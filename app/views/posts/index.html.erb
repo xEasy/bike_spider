@@ -1,17 +1,22 @@
+<%= paginate @posts %>
 <table class='table table-striped table-bordered table-hover'>
   <thead>
     <tr>
       <th>标题</th>
-      <th>作者/时间</th>
+      <th>作者</th>
+      <th>发布时间</th>
       <th>时间</th>
+      <th>出处</th>
     </tr>
   </thead>
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= link_to post.title, post.url %></td>
-        <td><%= post.info %></td>
+        <td><%= link_to post.title, post.url, target: '_blank' %></td>
+        <td><%= post.author %></td>
+        <td><%= post.p_date %></td>
         <td><%= post.c_at %></td>
+        <td><%= post.from %></td>
       </tr>
     <% end %>
   </tbody>

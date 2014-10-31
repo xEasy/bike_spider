@@ -1,37 +1,31 @@
 module Spider
   module Tags
-    class HzBike < Fetcher
+    class QdBike < Fetcher
       def initialize(total_page = 5)
         @total_page = total_page
-        @host = "http://www.51bike.com"
-        @start = 10
       end
 
       def id
-        'hz_bike'
-      end
-
-      def url(page)
-        "http://www.51bike.com/forum-7-#{ page }.html"
+        'qd_bike'
       end
 
       def posts
         @posts = []
         @total_page.times do |page|
-          res = get url(page + 1)
+          res = get "http://bbs.bikehome.net/forum.php?mod=forumdisplay&fid=7&page=#{ page + 1 }"
           p "Get Page: #{ page + 1 }"
           doc = Nokogiri::HTML(res.body)
-          table = doc.css('#threadlisttableid')
+          table = doc.css('table[summary=forum_7]')
           items = table.xpath('tbody/tr')
           start = 0
           total = items.size
           if page == 0
-            start = @start
+            start = 12
           end
           items[start..total].each do |item|
             name_info = item.xpath('th').first
             name = name_info.css('a.xst').text.squish
-            url = "#{ @host }/#{ name_info.css('a.xst').xpath('@href').text }"
+            url = "http://bbs.bikehome.net/#{ name_info.css('a.xst').xpath('@href').text }"
             info = item.xpath('td[2]').first #text.squish
             author = info.xpath('cite').text.squish
             date = info.xpath('em').text.squish
