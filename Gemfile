@@ -16,6 +16,10 @@ gem "mongoid", "~> 4.0.0"
 
 gem 'kaminari'
 gem 'faraday', '~> 0.8.8', require: false
+gem 'faraday-cookie_jar', '~> 0.0.5', require: false
+gem 'faraday_middleware', '~> 0.9.0', require: false
+gem "font-awesome-rails"
+
 gem 'nokogiri', '~> 1.6.0', require: false
 
 gem 'spring',        group: :development

@@ -4,6 +4,7 @@ class Post
 
   field :title, type: String
   field :url,   type: String
+  field :info,  type: String
 
-  validates :name, :url, uniqueness: true
+  validates :title, :url, uniqueness: true
 end
