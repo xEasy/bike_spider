@@ -3,7 +3,6 @@
   <thead>
     <tr>
       <th>标题</th>
-      <th>作者</th>
       <th>发布时间</th>
       <th>时间</th>
       <th>出处</th>
@@ -13,7 +12,6 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= link_to post.title, post.url, target: '_blank' %></td>
-        <td><%= post.author %></td>
         <td><%= post.p_date %></td>
         <td><%= post.c_at %></td>
         <td><%= post.from %></td>
