@@ -3,10 +3,10 @@ require 'spider'
 class PostSpider
   def fetch_all
     @s_count = Post.count
-    @total_page = 1
-    perform('hz')
-    perform('qd')
-    perform('cb')
+    fetch_hz_bike(1)
+    fetch_cb_bike(2)
+    fetch_qd_bike(2)
+    fetch_dfh_bike(2)
 
     p "新获取: #{ Post.count - @s_count } 条交易记录"
   end
@@ -21,23 +21,30 @@ class PostSpider
       fetch_cb_bike
     when 'qd'
       fetch_qd_bike
+    when 'dfh'
+      fetch_dfh_bike
     end
     p "新获取: #{ Post.count - @s_count } 条交易记录"
   end
 
   private
-  def fetch_cb_bike
-    fetcher = Spider::Tags::CbBike.new(@total_page)
+  def fetch_dfh_bike(total = @total_page)
+    fetcher = Spider::Tags::DfhBike.new(total)
     batch_create_post(fetcher.posts, fetcher)
   end
 
-  def fetch_qd_bike
-    fetcher = Spider::Tags::QdBike.new(@total_page)
+  def fetch_cb_bike(total = @total_page)
+    fetcher = Spider::Tags::CbBike.new(total)
     batch_create_post(fetcher.posts, fetcher)
   end
 
-  def fetch_hz_bike
-    fetcher = Spider::Tags::HzBike.new(@total_page)
+  def fetch_qd_bike(total = @total_page)
+    fetcher = Spider::Tags::QdBike.new(total)
+    batch_create_post(fetcher.posts, fetcher)
+  end
+
+  def fetch_hz_bike(total = @total_page)
+    fetcher = Spider::Tags::HzBike.new(total)
     batch_create_post(fetcher.posts, fetcher)
   end
 

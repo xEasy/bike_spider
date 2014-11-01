@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  resource :posts
+  resources :posts, only: [:index]
+  resources :favorities
   root 'posts#index'
 end

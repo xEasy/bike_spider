@@ -2,3 +2,13 @@
 @import "font-awesome";
 
 @import "sb_admin";
+
+.has_fav {
+  .favory { display: none; }
+  .unfavory { display: inline-block; }
+}
+
+.wasnt_fav {
+  .favory { display: inline-block; }
+  .unfavory { display: none; }
+}

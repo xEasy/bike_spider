@@ -21,7 +21,7 @@ module Spider
           res = get url(page + 1)
           p "Get Page: #{ page + 1 }"
           doc = Nokogiri::HTML(res.body)
-          table = doc.css('#threadlisttableid')
+          table = get_table_list(doc)
           items = table.xpath('tbody/tr')
           start = 0
           total = items.size
@@ -40,6 +40,10 @@ module Spider
           end
         end
         @posts
+      end
+
+      def get_table_list(doc)
+        doc.css('#threadlisttableid')
       end
     end
   end
