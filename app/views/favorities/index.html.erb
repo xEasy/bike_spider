@@ -21,7 +21,7 @@
         <td><%= post.from %></td>
         <td class='<%= post_favority_class(post) %>'>
           <%= link_to '收藏', favorities_path(p_id: post.id), remote: true, method: :post, class: 'favory' %>
-          <%= link_to '取消收藏', favorities_path(p_id: post.id), remote: true, method: :delete, class: 'unfavory' %>
+          <%= link_to '取消收藏', favority_path(id: post.id), remote: true, method: :delete, class: 'unfavory' %>
         </td>
       </tr>
     <% end %>

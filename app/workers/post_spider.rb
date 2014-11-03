@@ -3,49 +3,47 @@ require 'spider'
 class PostSpider
   def fetch_all
     @s_count = Post.count
-    fetch_hz_bike(1)
-    fetch_cb_bike(2)
-    fetch_qd_bike(2)
-    fetch_dfh_bike(2)
+    all_tags.each do |tag, page_count|
+      fetch_bike(tag, page_count)
+    end
 
     p "新获取: #{ Post.count - @s_count } 条交易记录"
   end
 
   def perform(tag)
     @s_count = Post.count
-    @total_page = 3
-    case tag
-    when 'hz'
-      fetch_hz_bike
-    when 'cb'
-      fetch_cb_bike
-    when 'qd'
-      fetch_qd_bike
-    when 'dfh'
-      fetch_dfh_bike
-    end
+    @total_page = 5
+    fetch_bike(tag)
     p "新获取: #{ Post.count - @s_count } 条交易记录"
   end
 
   private
-  def fetch_dfh_bike(total = @total_page)
-    fetcher = Spider::Tags::DfhBike.new(total)
+  def fetch_bike(tag, total = @total_page)
+    p "====== Fetching #{ tag } ====== "
+    fetcher = spider_mapper(tag).new(total)
     batch_create_post(fetcher.posts, fetcher)
   end
 
-  def fetch_cb_bike(total = @total_page)
-    fetcher = Spider::Tags::CbBike.new(total)
-    batch_create_post(fetcher.posts, fetcher)
+  def spider_mapper(tag)
+    {
+      hz:  Spider::Tags::HzBike,
+      cb:  Spider::Tags::CbBike,
+      dfh: Spider::Tags::DfhBike,
+      qd:  Spider::Tags::QdBike,
+      qxz: Spider::Tags::QxzBike,
+      gzc: Spider::Tags::GzcBike
+    }[tag.to_sym]
   end
 
-  def fetch_qd_bike(total = @total_page)
-    fetcher = Spider::Tags::QdBike.new(total)
-    batch_create_post(fetcher.posts, fetcher)
-  end
-
-  def fetch_hz_bike(total = @total_page)
-    fetcher = Spider::Tags::HzBike.new(total)
-    batch_create_post(fetcher.posts, fetcher)
+  def all_tags
+    [
+      [:hz, 1],
+      [:cb, 2],
+      [:qd, 2],
+      [:dfh, 2],
+      [:qxz, 2],
+      [:gzc, 2]
+    ]
   end
 
   def batch_create_post(posts, fetcher)

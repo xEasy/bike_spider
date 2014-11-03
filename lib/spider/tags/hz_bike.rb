@@ -31,7 +31,7 @@ module Spider
           items[start..total].each do |item|
             name_info = item.xpath('th').first
             name = name_info.css('a.xst').text.squish
-            url = "#{ @host }/#{ name_info.css('a.xst').xpath('@href').text }"
+            url = gen_item_link(name_info.css('a.xst').xpath('@href').text)
             info = item.xpath('td[2]').first #text.squish
             author = info.xpath('cite').text.squish
             date = info.xpath('em').text.squish
@@ -40,6 +40,10 @@ module Spider
           end
         end
         @posts
+      end
+
+      def gen_item_link(path)
+        "#{ @host }/#{ path }"
       end
 
       def get_table_list(doc)
