@@ -1,6 +1,6 @@
 class FavoritiesController < ApplicationController
   def index
-    @favorities = Favority.page(params[:page]).includes(:post)
+    @favorities = Favority.order(c_at: :desc).page(params[:page]).includes(:post)
   end
 
   def create

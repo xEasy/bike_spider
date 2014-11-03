@@ -23,3 +23,4 @@ gem "font-awesome-rails"
 gem 'nokogiri', '~> 1.6.0', require: false
 
 gem 'spring',        group: :development
+gem 'heroku', group: :development, require: false
