@@ -3,7 +3,7 @@ require 'spider'
 class PostSpider
   def fetch_all
     @s_count = Post.count
-    all_tags.each do |tag, page_count|
+    Post.all_tags.each do |tag, page_count|
       fetch_bike(tag, page_count)
     end
 
@@ -12,7 +12,7 @@ class PostSpider
 
   def perform(tag)
     @s_count = Post.count
-    @total_page = 5
+    @total_page = 3
     fetch_bike(tag)
     p "新获取: #{ Post.count - @s_count } 条交易记录"
   end
@@ -33,17 +33,6 @@ class PostSpider
       qxz: Spider::Tags::QxzBike,
       gzc: Spider::Tags::GzcBike
     }[tag.to_sym]
-  end
-
-  def all_tags
-    [
-      [:hz, 1],
-      [:cb, 2],
-      [:qd, 2],
-      [:dfh, 2],
-      [:qxz, 2],
-      [:gzc, 2]
-    ]
   end
 
   def batch_create_post(posts, fetcher)

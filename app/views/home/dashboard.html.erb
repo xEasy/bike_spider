@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Dashboard</h1>
+  </div>
+</div>
+
+<div class="row">
+  <% Post.all_tags.each do |from, _| %>
+    <div class="col-lg-3 col-md-6">
+      <div class="panel <%= cycle('panel-primary', 'panel-green', 'panel-yellow', 'panel-red') %>">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-tasks fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <div class="huge"><%= Post.with_tag("#{ from }_bike").count  %></div>
+              <div><%= from.to_s.humanize %></div>
+            </div>
+          </div>
+        </div>
+        <a href="/?from=<%= from %>_bike">
+          <div class="panel-footer">
+            <span class="pull-left">View All</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class='row'>
+    <div class="col-lg-3 col-md-6">
+      <div class="panel panel-yellow">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-shopping-cart fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <div class="huge"><%= Favority.count  %></div>
+              <div>收藏</div>
+            </div>
+          </div>
+        </div>
+        <a href="/favorities">
+          <div class="panel-footer">
+            <span class="pull-left">View All</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+</div>

@@ -9,4 +9,17 @@ class Post
   field :p_date,  type: String
 
   validates :title, :url, uniqueness: true
+  scope :with_tag, ->(tag) { where(from: tag) }
+
+  def self.all_tags
+    [
+      [:hz,  2],
+      [:cb,  6],
+      [:qd,  4],
+      [:dfh, 4],
+      [:qxz, 3],
+      [:gzc, 3]
+    ]
+  end
+
 end
