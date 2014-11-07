@@ -45,24 +45,27 @@
             <ul class="dropdown-menu dropdown-tasks">
               <li>
               <a href="#">
-                <div>
+                <div id='post-progressbar'>
                   <p>
-                  <strong>Task 1</strong>
-                  <span class="pull-right text-muted">40% Complete</span>
+                  <strong>Task</strong>
+                  <span class="pull-right text-muted progress-pre">100% Complete</span>
                   </p>
                   <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                       <span class="sr-only">40% Complete (success)</span>
                     </div>
                   </div>
+                  <p>
+                  <span class="text-muted time">100% Complete</span>
+                  </p>
                 </div>
               </a>
-                <li class="divider"></li>
+              <li class="divider"></li>
               <li>
-                <a class="text-center" href="#">
-                  <strong>See All Tasks</strong>
+                <%= link_to fetch_all_posts_path, remote: true, class: 'text-center fetch-all-posts-btn' do %>
+                  <strong>Fetch Items</strong>
                   <i class="fa fa-angle-right"></i>
-                </a>
+                <% end %>
               </li>
             </ul>
             <!-- /.dropdown-tasks -->

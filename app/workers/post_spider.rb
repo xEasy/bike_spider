@@ -4,10 +4,16 @@ class PostSpider
   def fetch_all
     @s_count = Post.count
     Post.all_tags.each do |tag, page_count|
-      fetch_bike(tag, page_count)
+      begin
+        fetch_bike(tag, page_count)
+      rescue => e
+        p "ERROR: while catching #{ tag }, #{ e.message }"
+      end
     end
 
-    p "新获取: #{ Post.count - @s_count } 条交易记录"
+    fetch_count = Post.count - @s_count
+    p "新获取: #{ fetch_count } 条交易记录"
+    fetch_count
   end
 
   def perform(tag)
