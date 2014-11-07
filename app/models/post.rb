@@ -18,7 +18,8 @@ class Post
       [:qd,  4],
       [:dfh, 4],
       [:qxz, 3],
-      [:gzc, 3]
+      [:gzc, 3],
+      [:bt, 3],
     ]
   end
 

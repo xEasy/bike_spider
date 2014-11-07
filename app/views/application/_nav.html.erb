@@ -6,7 +6,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.html">BikeSpider 1.0</a>
+    <a class="navbar-brand" href="index.html">HEHE Spider</a>
   </div>
     <!-- /.navbar-header -->
 
@@ -56,7 +56,7 @@
                     </div>
                   </div>
                   <p>
-                  <span class="text-muted time">100% Complete</span>
+                  <span class="text-muted time">Last At: <%= Progress.has_done.last.try(:c_at).strftime('%m/%d %H:%M:%S') %></span>
                   </p>
                 </div>
               </a>
@@ -134,25 +134,28 @@
           <a href="/"><i class="fa fa-dashboard fa-fw"></i> 所有</a>
           </li>
           <li>
-          <a class="<%= 'active' if params[:controller] == 'favorities' %>" href="/favorities"><i class="fa fa-shopping-cart fa-fw"></i>收藏的</a>
+          <a class="<%= 'active' if params[:controller] == 'favorities' %>" href="/favorities"><i class="fa fa-shopping-cart fa-fw"></i> 收藏的</a>
           </li>
           <li>
-          <a class="<%= 'active' if params[:from] == 'hz_bike' %>" href="/?from=hz_bike"><i class="fa fa-table fa-fw"></i>骑友网</a>
+          <a class="<%= 'active' if params[:from] == 'hz_bike' %>" href="/?from=hz_bike"><i class="fa fa-table fa-fw"></i> 骑友网</a>
           </li>
           <li>
-          <a class="<%= 'active' if params[:from] == 'qd_bike' %>" href="/?from=qd_bike"><i class="fa fa-table fa-fw"></i>起点</a>
+          <a class="<%= 'active' if params[:from] == 'qd_bike' %>" href="/?from=qd_bike"><i class="fa fa-table fa-fw"></i> 起点</a>
           </li>
           <li>
-          <a class="<%= 'active' if params[:from] == 'cb_bike' %>" href="/?from=cb_bike"><i class="fa fa-table fa-fw"></i>ChinaBike</a>
+          <a class="<%= 'active' if params[:from] == 'cb_bike' %>" href="/?from=cb_bike"><i class="fa fa-table fa-fw"></i> ChinaBike</a>
           </li>
           <li>
-          <a class="<%= 'active' if params[:from] == 'dfh_bike' %>" href="/?from=dfh_bike"><i class="fa fa-table fa-fw"></i>东方红</a>
+          <a class="<%= 'active' if params[:from] == 'dfh_bike' %>" href="/?from=dfh_bike"><i class="fa fa-table fa-fw"></i> 东方红</a>
           </li>
           <li>
-          <a class="<%= 'active' if params[:from] == 'qxz_bike' %>" href="/?from=qxz_bike"><i class="fa fa-table fa-fw"></i>骑行者</a>
+          <a class="<%= 'active' if params[:from] == 'qxz_bike' %>" href="/?from=qxz_bike"><i class="fa fa-table fa-fw"></i> 骑行者</a>
           </li>
           <li>
-          <a class="<%= 'active' if params[:from] == 'gzc_bike' %>" href="/?from=gzc_bike"><i class="fa fa-table fa-fw"></i>GZC</a>
+          <a class="<%= 'active' if params[:from] == 'gzc_bike' %>" href="/?from=gzc_bike"><i class="fa fa-table fa-fw"></i> GZC</a>
+          </li>
+          <li>
+          <a class="<%= 'active' if params[:from] == 'bt_bike' %>" href="/?from=bt_bike"><i class="fa fa-table fa-fw"></i> BikeTo</a>
           </li>
         </ul>
     </div>

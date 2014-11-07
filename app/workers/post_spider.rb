@@ -37,7 +37,8 @@ class PostSpider
       dfh: Spider::Tags::DfhBike,
       qd:  Spider::Tags::QdBike,
       qxz: Spider::Tags::QxzBike,
-      gzc: Spider::Tags::GzcBike
+      gzc: Spider::Tags::GzcBike,
+      bt: Spider::Tags::BtBike
     }[tag.to_sym]
   end
 
