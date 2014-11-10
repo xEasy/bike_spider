@@ -4,25 +4,27 @@
     <tr>
       <th>标题</th>
       <th>发布时间</th>
-      <th>收藏时间</th>
       <th>抓取时间</th>
       <th>出处</th>
       <th>操作</th>
+      <th>备注</th>
     </tr>
   </thead>
   <tbody>
     <% @favorities.each do |favory| %>
       <%- post = favory.post %>
       <tr>
-        <td><%= link_to post.title, post.url, target: '_blank' %></td>
+        <td data-toggle="tooltip" title="<%= post.title %>" data-placement="top" >
+          <%= link_to truncate(post.title), post.url, target: '_blank' %>
+        </td>
         <td><%= post.p_date %></td>
-        <td><%= favory.c_at %></td>
         <td><%= post.c_at %></td>
         <td><%= post.from %></td>
         <td class='<%= post_favority_class(post) %>'>
           <%= link_to '收藏', favorities_path(p_id: post.id), remote: true, method: :post, class: 'favory' %>
           <%= link_to '取消收藏', favority_path(id: post.id), remote: true, method: :delete, class: 'unfavory' %>
         </td>
+        <td data-id="<%= post.id %>" class='post-comment'><%= post.comment %></td>
       </tr>
     <% end %>
   </tbody>

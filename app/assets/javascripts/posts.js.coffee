@@ -42,3 +42,26 @@ $(document).on 'ajax:success', '.fetch-all-posts-btn', (e) ->
 
 $(document).on 'ajax:error', '.fetch-all-posts-btn', (e) ->
   alert('Working')
+
+$(document).on 'click', '.post-comment', (e) ->
+  this.contentEditable = true
+
+$(document).on 'focus', '.post-comment', (e) ->
+  $(this).addClass('editing')
+
+$(document).on 'blur', '.post-comment', (e) ->
+  $(this).removeClass('editing')
+  $.ajax
+    url: "posts/#{ $(this).data().id }"
+    type: 'PATCH'
+    data:
+      comment: $(this).text()
+    success: -> console.log 'success'
+    error: -> console.log 'error'
+
+$(document).on 'keyup', '.post-comment', (e) ->
+  if e.keyCode == 13
+    $(this).blur()
+
+$(document).on 'mouseover', '.post-title', (e) ->
+  $(this).tooltip('show')

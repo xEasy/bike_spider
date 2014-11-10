@@ -58,7 +58,7 @@
                     </div>
                   </div>
                   <p>
-                  <span class="text-muted time">Last At: <%= Progress.has_done.last.try(:c_at).strftime('%m/%d %H:%M:%S') %></span>
+                  <span class="text-muted time">Last At: <%= Progress.has_done.last.try(:c_at).strftime('%m/%d %H:%M:%S') %>, Fetch: <%= Progress.has_done.last.try(:fetch_count) %> Items</span>
                   </p>
                 </div>
               </a>

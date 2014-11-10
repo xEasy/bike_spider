@@ -14,7 +14,9 @@
     <% @posts.each_with_index do |post, index| %>
       <tr>
         <td><%= index + 1 %></td>
-        <td><%= link_to post.title, post.url, target: '_blank' %></td>
+        <td>
+          <%= link_to truncate(post.title), post.url, target: '_blank', class: 'post-title', data: { toggle: 'tooltip', placement: 'top' }, title: post.title %>
+        </td>
         <td><%= post.p_date %></td>
         <td><%= post.c_at %></td>
         <td><%= post.from %></td>

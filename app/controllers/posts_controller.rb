@@ -8,6 +8,15 @@ class PostsController < ApplicationController
   def show
   end
 
+  def update
+    @post = Post.find(params[:id])
+    if @post.update comment: params[:comment]
+      head 200
+    else
+      head 403
+    end
+  end
+
   def fetch_all
     if Progress.doing.size > 0
       head 403
