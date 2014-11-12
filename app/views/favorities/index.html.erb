@@ -1,5 +1,5 @@
 <%= paginate @favorities %>
-<table class='table table-striped table-bordered table-hover'>
+<table class='table table-striped table-hover'>
   <thead>
     <tr>
       <th>标题</th>
@@ -14,15 +14,15 @@
     <% @favorities.each do |favory| %>
       <%- post = favory.post %>
       <tr>
-        <td data-toggle="tooltip" title="<%= post.title %>" data-placement="top" >
-          <%= link_to truncate(post.title), post.url, target: '_blank' %>
+        <td>
+          <%= link_to truncate(post.title), post.url, target: '_blank', class: 'post-title', data: { toggle: 'tooltip', placement: 'top' }, title: post.title %>
         </td>
         <td><%= post.p_date %></td>
-        <td><%= post.c_at %></td>
-        <td><%= post.from %></td>
+        <td><%= post.c_at.strftime('%m/%d %H:%M') %></td>
+        <td><%= post.from.split('_').first %></td>
         <td class='<%= post_favority_class(post) %>'>
-          <%= link_to '收藏', favorities_path(p_id: post.id), remote: true, method: :post, class: 'favory' %>
-          <%= link_to '取消收藏', favority_path(id: post.id), remote: true, method: :delete, class: 'unfavory' %>
+          <%= link_to 'Favour', favorities_path(p_id: post.id), remote: true, method: :post, class: 'favory' %>
+          <%= link_to 'UnFavour', favority_path(id: post.id), remote: true, method: :delete, class: 'unfavory' %>
         </td>
         <td data-id="<%= post.id %>" class='post-comment'><%= post.comment %></td>
       </tr>
