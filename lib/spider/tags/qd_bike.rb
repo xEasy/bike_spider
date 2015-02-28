@@ -20,15 +20,14 @@ module Spider
           start = 0
           total = items.size
           if page == 0
-            start = 12
+            start = 8
           end
           items[start..total].each do |item|
             name_info = item.xpath('th').first
             name = name_info.css('a.xst').text.squish
             url = "http://bbs.bikehome.net/#{ name_info.css('a.xst').xpath('@href').text }"
-            info = item.xpath('td[2]').first #text.squish
-            author = info.xpath('cite').text.squish
-            date = info.xpath('em').text.squish
+            author = item.css('.deanforumauthor').text.squish
+            date = item.css('.deanforumdateline > span > span').text.squish
             @posts << { name: name, url: url, author: author, date: date }
             p "Get: #{ name }"
           end
